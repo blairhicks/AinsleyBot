@@ -34,6 +34,9 @@
     If you are running the bot within a docker container, they would be set like this:
     # ToDo - Add docker run command
 
+    Custom updates:
+        Add in code to request rooms url from Eve
+
 '''
 
 
@@ -53,6 +56,7 @@ app = Flask(__name__)
 # The value is the help message sent for the command
 commands = {
     "/echo": "Reply back with the same message sent.",
+    "/listrooms": "Reply back with a list of all room entries.",
     "/help": "Get help."
 }
 
@@ -127,6 +131,8 @@ def process_incoming_message(post_data):
         reply = send_help(post_data)
     elif command in ["/echo"]:
         reply = send_echo(message)
+    elif command in ["/listrooms"]:
+        reply = send_list()
 
     send_message_to_room(room_id, reply)
 
@@ -139,6 +145,12 @@ def send_echo(incoming):
     message = message[6:]
     return message
 
+# Updated demo code that lists existing rooms from the backend database
+def send_list():
+    # Initially, we just do a quick list of all the rooms
+    url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
+    message = requests.get(url)
+    return message 
 
 # Construct a help message for users.
 def send_help(post_data):
@@ -147,7 +159,6 @@ def send_help(post_data):
     for c in commands.items():
         message = message + "* **%s**: %s \n" % (c[0], c[1])
     return message
-
 
 
 if __name__ == '__main__':
