@@ -129,9 +129,7 @@ def process_incoming_message(post_data):
 
     # Take action based on command
     # If no command found, send help
-    if command in ["","/help"]:
-        reply = send_help(post_data)
-    elif command in ["/echo"]:
+    if command in ["/echo"]:
         reply = send_echo(message)
     elif command in ["/listrooms"]:
         reply = send_list()
@@ -139,6 +137,10 @@ def process_incoming_message(post_data):
         reply = start_room(message)
     elif command in ["/stop_room"]:
         reply = stop_room(message)
+    elif command in ["/help"]:
+        reply = send_help(post_data)
+    else:
+        reply = send_help('HUH?')
 
     send_message_to_room(room_id, reply)
 
@@ -186,7 +188,7 @@ def stop_room(incoming):
 # Construct a help message for users.
 def send_help(post_data):
     message = "Hello!  "
-    message = message + "Updated at 2:24pm \n"
+    message = message + "Updated at 2:24pm "
     message = message + "I understand the following commands:  \n"
     for c in commands.items():
         message = message + "* **%s**: %s \n" % (c[0], c[1])
