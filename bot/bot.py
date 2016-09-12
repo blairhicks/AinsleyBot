@@ -56,6 +56,8 @@ app = Flask(__name__)
 # The value is the help message sent for the command
 commands = {
     "/echo": "Reply back with the same message sent.",
+    "/start_room <Patient_ID>": "Start a Room Consultation for Patient_ID",
+    "/stop_room <Patient_ID>": "Stop a Room Consultation for Patient_ID",
     "/listrooms": "Reply back with a list of all room entries.",
     "/help": "Get help."
 }
@@ -133,6 +135,10 @@ def process_incoming_message(post_data):
         reply = send_echo(message)
     elif command in ["/listrooms"]:
         reply = send_list()
+    elif command in ["/start_room"]:
+        reply = start_room()
+    elif command in ["/stop_room"]:
+        reply = stop_room()
 
     send_message_to_room(room_id, reply)
 
@@ -151,6 +157,31 @@ def send_list():
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
     message = requests.get(url)
     return message.text
+
+# Updated demo code that lists existing rooms from the backend database
+def start_room(incoming):
+    # Get sent message
+    patient_ID = incoming["text"]
+    # Slice first 12 characters to remove command
+    patient_ID = message[12:]
+    # Initially, we just do a quick list of all the rooms
+    url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
+    payload = {'patientID': patient_ID, "action": "StartRoom"}
+    message = requests.post(url, payload=payload)
+    return message.text
+
+# Updated demo code that lists existing rooms from the backend database
+def stop_room(incoming):
+    # Get sent message
+    patient_ID = incoming["text"]
+    # Slice first 11 characters to remove command
+    patient_ID = message[11:]
+    # Initially, we just do a quick list of all the rooms
+    url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
+    payload = {'patientID': patient_ID, "action": "StopRoom"}
+    message = requests.post(url, payload=payload)
+    return message.text
+
 
 # Construct a help message for users.
 def send_help(post_data):
