@@ -163,8 +163,8 @@ def start_room(incoming):
     # Get sent message
     patient_ID = incoming["text"]
     # Slice first 12 characters to remove command
-    patient_ID = message[12:]
-    # Initially, we just do a quick list of all the rooms
+    patient_ID = patient_ID[12:]
+    # Add a StartRoom entry into the database
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
     payload = {'patientID': patient_ID, "action": "StartRoom"}
     message = requests.post(url, payload=payload)
@@ -175,8 +175,8 @@ def stop_room(incoming):
     # Get sent message
     patient_ID = incoming["text"]
     # Slice first 11 characters to remove command
-    patient_ID = message[11:]
-    # Initially, we just do a quick list of all the rooms
+    patient_ID = patient_ID[11:]
+    # Add a StopRoom entry into the database
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
     payload = {'patientID': patient_ID, "action": "StopRoom"}
     message = requests.post(url, payload=payload)
