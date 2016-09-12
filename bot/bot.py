@@ -136,9 +136,9 @@ def process_incoming_message(post_data):
     elif command in ["/listrooms"]:
         reply = send_list()
     elif command in ["/start_room"]:
-        reply = start_room()
+        reply = start_room(message)
     elif command in ["/stop_room"]:
-        reply = stop_room()
+        reply = stop_room(message)
 
     send_message_to_room(room_id, reply)
 
