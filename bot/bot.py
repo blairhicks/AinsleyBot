@@ -168,7 +168,7 @@ def start_room(incoming):
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
     payload = {'patientID': patient_ID, "action": "StartRoom"}
     message = requests.post(url, payload=payload)
-    return message.text
+    return ('Starting consultation for PatientID ',patient_ID)
 
 # Updated demo code that lists existing rooms from the backend database
 def stop_room(incoming):
@@ -180,7 +180,7 @@ def stop_room(incoming):
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
     payload = {'patientID': patient_ID, "action": "StopRoom"}
     message = requests.post(url, payload=payload)
-    return message.text
+    return ('Stopping consultation for PatientID ',patient_ID) 
 
 
 # Construct a help message for users.
