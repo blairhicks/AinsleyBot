@@ -150,7 +150,7 @@ def send_list():
     # Initially, we just do a quick list of all the rooms
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
     message = requests.get(url)
-    return message 
+    return message.json()
 
 # Construct a help message for users.
 def send_help(post_data):
