@@ -168,8 +168,9 @@ def start_room(incoming):
     patient_ID = patient_ID[12:]
     # Add a StartRoom entry into the database
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
-    payload = {'patientID': patient_ID, "action": "StartRoom"}
-    message = requests.post(url, payload=payload)
+    payload = {'patientID': patient_ID, "action": "StartRoom", "lastname": "Doe"}
+    headers = {'Content-type': 'application/json'}
+    message = requests.post(url, data=json.dumps(payload), headers=headers)
     return ('Starting consultation for PatientID ',patient_ID)
 
 # Updated demo code that lists existing rooms from the backend database
@@ -180,15 +181,16 @@ def stop_room(incoming):
     patient_ID = patient_ID[11:]
     # Add a StopRoom entry into the database
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
-    payload = {'patientID': patient_ID, "action": "StopRoom"}
-    message = requests.post(url, payload=payload)
+    payload = {'patientID': patient_ID, "action": "StopRoom","lastname": "Doe"}
+    headers = {'Content-type': 'application/json'}
+    message = requests.post(url, data=json.dumps(payload), headers=headers)
     return ('Stopping consultation for PatientID ',patient_ID) 
 
 
 # Construct a help message for users.
 def send_help(post_data):
     message = "Hello!  "
-    message = message + "Updated at 2:24pm "
+    message = message + "Updated at 4:09pm  \n"
     message = message + "I understand the following commands:  \n"
     for c in commands.items():
         message = message + "* **%s**: %s \n" % (c[0], c[1])
