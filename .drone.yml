@@ -26,18 +26,18 @@ publish:
 
 # This section provided as an example for how to auto-deploy/update a
 # running instance of the bot on a Mantl Cluster
-#deploy:
-#  webhook:
-#    image: plugins/drone-webhook
-#    skip_verify: true
-#    method: POST
-#    auth:
-#      username: $$MANTL_USERNAME
-#      password: $$MANTL_PASSWORD
-#    urls:
-#      - https://$$MANTL_CONTROL/marathon/v2/apps/$$MANTL_APP_NAME-$$BRANCH/restart?force=true
-#    when:
-#      branch: "!master"
+deploy:
+  webhook:
+    image: plugins/drone-webhook
+    skip_verify: true
+    method: POST
+    auth:
+      username: $$MANTL_USERNAME
+      password: $$MANTL_PASSWORD
+    urls:
+      - https://$$MANTL_CONTROL/marathon/v2/apps/$$MANTL_APP_NAME/restart?force=true
+    when:
+      branch: "!master"
 
 notify:
   # This section will send build notifications via Cisco Spark.

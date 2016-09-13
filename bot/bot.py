@@ -163,7 +163,8 @@ def send_list():
 # Updated demo code that lists existing rooms from the backend database
 def start_room(incoming):
     # Say hello
-    if (DEBUG) sys.stderr.write('*** inside start_room ***')
+    if DEBUG:
+        sys.stderr.write('*** inside start_room ***')
     # Get sent message
     patient_ID = incoming["text"]
     # Slice first 12 characters to remove command
@@ -173,7 +174,8 @@ def start_room(incoming):
     payload = {'patientID': patient_ID, "action": "StartRoom", "lastname": "Doe"}
     headers = {'Content-type': 'application/json'}
     message = requests.post(url, data=json.dumps(payload), headers=headers)
-    if (DEBUG) sys.stderr.write('*** request.post result: *** \n %s \n' % message)
+    if DEBUG:
+        sys.stderr.write('*** request.post result: *** \n %s \n' % message)
     return ('Starting consultation for PatientID ',patient_ID)
 
 # Updated demo code that lists existing rooms from the backend database
