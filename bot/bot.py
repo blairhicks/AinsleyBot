@@ -195,10 +195,10 @@ def stop_room(incoming):
 # Construct a help message for users.
 def send_help(post_data):
     # Say hello
-    if DEBUG:
-        sys.stderr.write('*** inside send_help ***')
+#    if DEBUG:
+    sys.stderr.write('*** inside send_help ***')
     message = "Hello!  "
-    message = message + "Updated at 14Sept 3:0pm  \n"
+    message = message + "Updated at 14Sept 3:20pm  \n"
     message = message + "I understand the following commands:  \n"
     for c in commands.items():
         message = message + "* **%s**: %s \n" % (c[0], c[1])
