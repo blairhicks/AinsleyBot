@@ -127,6 +127,9 @@ def process_incoming_message(post_data):
             # If a command was found, stop looking for others
             break
 
+    if DEBUG:
+        sys.stderr.write("*** command string = " + command + "*** \n")
+
     # Take action based on command
     # If no command found, send help
     if command in ["/echo"]:
@@ -147,6 +150,9 @@ def process_incoming_message(post_data):
 
 # Sample command function that just echos back the sent message
 def send_echo(incoming):
+    # Say hello
+    if DEBUG:
+        sys.stderr.write('*** inside echo message ***')
     # Get sent message
     message = incoming["text"]
     # Slice first 6 characters to remove command
@@ -155,6 +161,9 @@ def send_echo(incoming):
 
 # Updated demo code that lists existing rooms from the backend database
 def send_list():
+    # Say hello
+    if DEBUG:
+        sys.stderr.write('*** inside listrooms ***')
     # Initially, we just do a quick list of all the rooms
     url = 'http://imapex-tsparktrak-eve.green.browndogtech.com/room'
     message = requests.get(url)
