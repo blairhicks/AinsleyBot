@@ -56,8 +56,8 @@ app = Flask(__name__)
 # The value is the help message sent for the command
 commands = {
     "/echo": "Reply back with the same message sent.",
-    "/start_room <Patient_ID>": "Start a Room Consultation for Patient_ID",
-    "/stop_room <Patient_ID>": "Stop a Room Consultation for Patient_ID",
+    "/start_room": "Start a Room Consultation for Patient_ID",
+    "/stop_room": "Stop a Room Consultation for Patient_ID",
     "/listrooms": "Reply back with a list of all room entries.",
     "/help": "Get help."
 }
@@ -207,7 +207,7 @@ def send_help(post_data):
 #    if DEBUG:
     sys.stderr.write('*** inside send_help ***')
     message = "Hello!  "
-    message = message + "Updated at 18Sept 5:45pm  \n"
+    message = message + "Updated at 18Sept 6:45pm  \n"
     message = message + "I understand the following commands:  \n"
     for c in commands.items():
         message = message + "* **%s**: %s \n" % (c[0], c[1])
