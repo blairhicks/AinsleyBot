@@ -207,7 +207,7 @@ def send_help(post_data):
 #    if DEBUG:
     sys.stderr.write('*** inside send_help ***')
     message = "Hello!  "
-    message = message + "Updated at 31Dec2016 at 12:55pm  \n"
+    message = message + "Updated at 31Dec2016 at 1:00pm  \n"
     message = message + "I understand the following commands:  \n"
     for c in commands.items():
         message = message + "* **%s**: %s \n" % (c[0], c[1])
